@@ -1,0 +1,37 @@
+/*Copyright © JZ Greenwell & Casey Hayes
+    Elon University
+    December 3rd, 2016
+*/
+
+/* Sitewide */
+* {
+  
+}
+
+body {
+  margin: 1em auto;
+}
+
+/* Header */
+header {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Body */
+body section {
+  border: red .125em solid;
+  margin: 1.25em 3em;
+  padding: 2em;
+}
+
+p {
+  margin: auto;
+}
+
+/* Footer */
+footer {
+  border-top: blue .125em solid;
+  padding: 1.25em 3em;
+}

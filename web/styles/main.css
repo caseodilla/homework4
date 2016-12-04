@@ -10,6 +10,7 @@
 
 body {
   margin: 1em auto;
+  font-family: sans-serif;
 }
 
 /* Header */
@@ -23,15 +24,101 @@ header {
 body section {
   border: red .125em solid;
   margin: 1.25em 3em;
-  padding: 2em;
+  padding: 2em 2em 1em 2em;
+}
+
+body section p:last-of-type{
+  padding-bottom: 1em;
+}
+
+form{
+  display:inline-block;
 }
 
 p {
+  font-size: 1em;
   margin: auto;
+  
+}
+
+a{
+  font-weight: bold;
+}
+
+#returnHome{
+  padding-bottom: 1em;
+  padding-top: 1em;
 }
 
 /* Footer */
 footer {
   border-top: blue .125em solid;
   padding: 1.25em 3em;
+}
+
+img{
+  width:70%;
+  min-width: 400px;
+}
+
+span{
+  display:none;
+}
+
+form{
+  width:100%;
+}
+label{
+  display: inline-block;
+  min-width: 8em;
+}
+input{
+  display: -inline-block;
+  margin-bottom: .5em;
+  min-width: 8.5em;
+  width: 16em;
+
+}
+
+#book{
+  width: 25em;
+}
+
+#checkout{
+  width:fit-content;
+}
+
+@media screen and (max-width:580px){
+  input, #book{
+    width:35%;
+  }
+}
+@media screen and (max-width:400px){
+  h1{
+    font-size: 1.4em;
+  }
+  h2{
+    font-size: 1.2em;
+  }
+  p{
+    font-size: .9em;
+  }
+  img{
+    width:100%;
+  }
+  span{
+    display:inline-block;
+  }
+  label{
+    font-size: .9em;
+    width:fit-content;
+  }
+  
+  #buttonSpace{
+    display: none;
+  }
+  
+  input, #book{
+    width:80%;
+  }
 }

@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LibraryServlet</servlet-name>
-        <url-pattern>/LibraryServlet</url-pattern>
+        <url-pattern>/Library</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -14,6 +14,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>library.jsp</welcome-file>
+        <welcome-file>Library</welcome-file>
     </welcome-file-list>
 </web-app>

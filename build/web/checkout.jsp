@@ -5,8 +5,8 @@
 <%@include file="includes/header.jsp" %>
 <section>
   <h2>Checkout a book</h2>
-  <form action="checkout" method="post">
-    <label for="firstName">First Name</label>
+  <form action="Library" method="post">
+    <label for="firstName">First Name:</label>
     <span><br></span>
     <input type="text" name="firstName" id="firstName" autofocus 
            required title="Please enter your first name."
@@ -32,9 +32,8 @@
            title="Please enter the title of the book"
            value="">
     <br>
-    <label for="calculate"></label>
+    <label id="buttonSpace" for="checkout"></label>
     <input type="submit" name="action" id="checkout" value="Checkout">
-    </form>
-    <p><a href="<c:url value='/library.jsp' />">Return to front page</a></p>
-    </section>
-    <%@include file="includes/footer.jsp" %>   
+  </form>
+</section>
+<%@include file="includes/footer.jsp" %>   

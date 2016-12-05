@@ -26,8 +26,8 @@ public class LibraryServlet extends HttpServlet {
    * @throws ServletException if a servlet-specific error occurs
    * @throws IOException if an I/O error occurs
    */
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+  protected void processRequest(HttpServletRequest request, HttpServletResponse 
+          response) throws ServletException, IOException {
     String action = request.getParameter("action");
     String url = "/library.jsp";
     if (action == null) {
@@ -44,7 +44,10 @@ public class LibraryServlet extends HttpServlet {
       Date date = new Date(dueDate.getTimeInMillis());
       
       //Creates a user object with the given input
-      User user = new User(request.getParameter("email"), request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("book"), date);
+      User user = new User(request.getParameter("email"), 
+              request.getParameter("firstName"), 
+              request.getParameter("lastName"), 
+              request.getParameter("book"), date);
       
       //Adds user and date attribute to request
 
@@ -60,7 +63,8 @@ public class LibraryServlet extends HttpServlet {
     } else if (action.equals("GetBook")) {
       url = "/checkout.jsp";
     } else if (action.equals("Check in")) {
-      UserDB.deleteBook(request.getParameter("email"), request.getParameter("bookName"));
+      UserDB.deleteBook(request.getParameter("email"), 
+              request.getParameter("bookName"));
       ArrayList<User> allUsers = new ArrayList<User>();
       allUsers = UserDB.selectUsers();
       request.setAttribute("users", allUsers);
@@ -76,7 +80,8 @@ public class LibraryServlet extends HttpServlet {
     getServletContext().getRequestDispatcher(url).forward(request, response);
   }
 
-  // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+  // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on 
+  //the + sign on the left to edit the code.">
   /**
    * Handles the HTTP <code>GET</code> method.
    *
@@ -100,8 +105,8 @@ public class LibraryServlet extends HttpServlet {
    * @throws IOException if an I/O error occurs
    */
   @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+  protected void doPost(HttpServletRequest request, HttpServletResponse 
+          response) throws ServletException, IOException {
     processRequest(request, response);
   }
 

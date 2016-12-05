@@ -11,6 +11,7 @@
     sent to you if your book becomes overdue.
   </p>
   
-  <p id="returnHome"><a href="<c:url value='Library?action=Home' />">Return to front page</a></p>
+  <p id="returnHome"><a href="<c:url value='Library?action=Home' />">Return to 
+      front page</a></p>
 </section>
 <%@include file="includes/footer.jsp" %>

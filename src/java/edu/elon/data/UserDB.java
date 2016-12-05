@@ -188,7 +188,7 @@ public class UserDB {
     ResultSet rs = null;
 
     String query = "SELECT * FROM User "
-            + "JOIN Homework4.Book ON Homework4.Book.Email = User.Email"
+            + "JOIN vzo5k.Book ON vzo5k.Book.Email = User.Email"
             + "WHERE User.Email = ?";
     try {
       ps = connection.prepareStatement(query);
@@ -216,14 +216,15 @@ public class UserDB {
 
   //Returns an array list of all the checked out books along with their users
   public static ArrayList<User> selectUsers() {
-    // add code that returns an ArrayList<User> object of all users in the User table
+    // add code that returns an ArrayList<User> object of all users in the User 
+    //table
     ConnectionPool pool = ConnectionPool.getInstance();
     Connection connection = pool.getConnection();
     PreparedStatement ps = null;
     ResultSet rs = null;
     ArrayList<User> allUsers = new ArrayList<User>();
     String query = "SELECT * FROM User "
-            + "JOIN Homework4.Book ON Homework4.Book.Email = User.Email";
+            + "JOIN vzo5k.Book ON vzo5k.Book.Email = User.Email";
 
     try {
       ps = connection.prepareStatement(query);

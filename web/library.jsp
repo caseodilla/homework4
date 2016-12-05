@@ -9,7 +9,8 @@
     <a href="<c:url value='Library?action=GetBook' />">Check out a book</a>
   </p>
   <p>
-    <a href="<c:url value='Library?action=ManageBooks' />">Manage checked out books</a>
+    <a href="<c:url value='Library?action=ManageBooks' />">Manage checked out 
+      books</a>
   </p>
 </section>
 

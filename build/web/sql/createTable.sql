@@ -3,12 +3,12 @@
 -- December 3rd, 2016
 
 -- Deletes database if it already exists
-DROP DATABASE IF EXISTS homework4;
+DROP DATABASE IF EXISTS vzo5k;
 
--- Creates a database entitled homework4
-CREATE SCHEMA homework4 DEFAULT CHARACTER SET utf8 ;
+-- Creates a database entitled vzo5k
+CREATE SCHEMA vzo5k DEFAULT CHARACTER SET utf8 ;
 
-USE homework4;
+USE vzo5k;
 
 CREATE TABLE User (
 Email VARCHAR(45) UNIQUE NOT NULL,

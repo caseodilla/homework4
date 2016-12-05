@@ -24,15 +24,19 @@
             <td><c:if test="${user.overDue}">overdue</c:if></td>
             <td>
               <form action="Library" method="post">
-                <input type="hidden" name="email" id="email" value="${user.email}">
-                <input type="hidden" name="bookName" id="bookName" value="${user.bookName}">
-                <input type="submit" name="action" id="checkout" value="Check in">
+                <input type="hidden" name="email" id="email" 
+                       value="${user.email}">
+                <input type="hidden" name="bookName" id="bookName" 
+                       value="${user.bookName}">
+                <input type="submit" name="action" id="checkout" 
+                       value="Check in">
               </form>
             </td>
           </tr>
         </c:forEach>
     </table>
   
-  <p><a href="<c:url value='Library?action=Home' />">Return to front page</a></p>
+  <p><a href="<c:url value='Library?action=Home' />">Return to front 
+      page</a></p>
 </section>
 <%@include file="includes/footer.jsp" %>   

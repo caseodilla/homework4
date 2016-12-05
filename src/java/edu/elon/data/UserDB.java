@@ -3,7 +3,11 @@ package edu.elon.data;
 import java.sql.*;
 
 import edu.elon.model.User;
+import java.util.ArrayList;
 
+/**
+ * Copyright (C) 2016 - JZ Greenwell, Casey Hayes Elon University
+ */
 public class UserDB {
 
   //inserts a user into the database
@@ -79,7 +83,7 @@ public class UserDB {
       pool.freeConnection(connection);
     }
   }
-  
+
   //Updates the due date of a book for a particular user
   public static int updateBook(User user) {
     ConnectionPool pool = ConnectionPool.getInstance();
@@ -88,7 +92,7 @@ public class UserDB {
 
     String query = "UPDATE Book SET "
             + "DueDate = ?, "
-            + "WHERE BookName = ?" 
+            + "WHERE BookName = ?"
             + "AND Email = ?";
     try {
       ps = connection.prepareStatement(query);
@@ -129,7 +133,7 @@ public class UserDB {
   }
 
   //removes a book for a specific user from the database
-  public static int deleteBook(User user) {
+  public static int deleteBook(String email, String bookName) {
     ConnectionPool pool = ConnectionPool.getInstance();
     Connection connection = pool.getConnection();
     PreparedStatement ps = null;
@@ -139,8 +143,8 @@ public class UserDB {
             + "AND BookName = ?";
     try {
       ps = connection.prepareStatement(query);
-      ps.setString(1, user.getEmail());
-      ps.setString(2, user.getBookName());
+      ps.setString(1, email);
+      ps.setString(2, bookName);
 
       return ps.executeUpdate();
     } catch (SQLException e) {
@@ -184,7 +188,8 @@ public class UserDB {
     ResultSet rs = null;
 
     String query = "SELECT * FROM User "
-            + "WHERE Email = ?";
+            + "JOIN Homework4.Book ON Homework4.Book.Email = User.Email"
+            + "WHERE User.Email = ?";
     try {
       ps = connection.prepareStatement(query);
       ps.setString(1, email);
@@ -195,6 +200,8 @@ public class UserDB {
         user.setFirstName(rs.getString("FirstName"));
         user.setLastName(rs.getString("LastName"));
         user.setEmail(rs.getString("Email"));
+        user.setBookName(rs.getString("BookName"));
+        user.setDate(rs.getDate("DueDate"));
       }
       return user;
     } catch (SQLException e) {
@@ -205,5 +212,41 @@ public class UserDB {
       DBUtil.closePreparedStatement(ps);
       pool.freeConnection(connection);
     }
+  }
+
+  //Returns an array list of all the checked out books along with their users
+  public static ArrayList<User> selectUsers() {
+    // add code that returns an ArrayList<User> object of all users in the User table
+    ConnectionPool pool = ConnectionPool.getInstance();
+    Connection connection = pool.getConnection();
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    ArrayList<User> allUsers = new ArrayList<User>();
+    String query = "SELECT * FROM User "
+            + "JOIN Homework4.Book ON Homework4.Book.Email = User.Email";
+
+    try {
+      ps = connection.prepareStatement(query);
+      rs = ps.executeQuery();
+      User user = null;
+      while (rs.next()) {
+        user = new User();
+        user.setFirstName(rs.getString("FirstName"));
+        user.setLastName(rs.getString("LastName"));
+        user.setEmail(rs.getString("Email"));
+        user.setBookName(rs.getString("BookName"));
+        user.setDate(rs.getDate("DueDate"));
+        allUsers.add(user);
+      }
+      return allUsers;
+    } catch (SQLException e) {
+      System.out.println(e);
+    } finally {
+      DBUtil.closeResultSet(rs);
+      DBUtil.closePreparedStatement(ps);
+      pool.freeConnection(connection);
+    }
+
+    return null;
   }
 }

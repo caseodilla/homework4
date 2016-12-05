@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.elon.model;
 
 import java.sql.Date;
@@ -10,8 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 /**
- *
- * @author jameszach
+ * Copyright (C) 2016 - JZ Greenwell, Casey Hayes Elon University
  */
 public class User {
   private String email;
@@ -19,6 +13,12 @@ public class User {
   private String lastName;
   private String bookName;
   private Date date;
+  
+  //for formatting purposes
+  private String formattedDate;
+  
+  //determines whether the book is overdue or not upon creation
+  private Boolean overDue;
     
   public User() {
     email = "";
@@ -26,6 +26,7 @@ public class User {
     lastName = "";
     bookName = "";
     date = null;
+    formattedDate = "";
   }
 
   public User(String email, String firstName, String lastName, String bookName, 
@@ -35,6 +36,8 @@ public class User {
     this.lastName = lastName;
     this.bookName = bookName;
     this.date = date;
+    this.formattedDate = getFormattedDate();
+    this.overDue = isOverDue();
   }
 
   public String getEmail() {
@@ -75,6 +78,11 @@ public class User {
 
   public void setDate(Date date) {
     this.date = date;
+    
+    //as soon as there is a valid date, the date is saved in a formatted form 
+    //and it is determined whether or not the book is overdue
+    this.formattedDate = getFormattedDate();
+    this.overDue = isOverDue();
   }
   
   public String getFormattedDate(){
@@ -82,5 +90,14 @@ public class User {
     String dateFormat = "MM-dd-yyyy";
     SimpleDateFormat df = new SimpleDateFormat(dateFormat);
     return df.format(date);
+  }
+  
+  public boolean isOverDue(){
+    GregorianCalendar currentCal = new GregorianCalendar();
+    Date currentDate = new Date(currentCal.getTimeInMillis());
+    if(currentDate.compareTo(this.date)<0){
+      return false;
+    }
+    return true;
   }
 }

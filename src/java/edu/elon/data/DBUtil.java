@@ -6,6 +6,9 @@ package edu.elon.data;
 
 import java.sql.*;
 
+/**
+ * Copyright (C) 2016 - JZ Greenwell, Casey Hayes Elon University
+ */
 public class DBUtil {
 
     public static void closeStatement(Statement s) {

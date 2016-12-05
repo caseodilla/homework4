@@ -1,18 +1,16 @@
 package edu.elon.controller;
 
+import edu.elon.data.UserDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import edu.elon.model.User;
+import java.util.ArrayList;
 
 /**
  * Copyright (C) 2016 - JZ Greenwell, Casey Hayes Elon University
@@ -44,19 +42,33 @@ public class LibraryServlet extends HttpServlet {
 
       //Creates a date that is formatted appropriately for SQL
       Date date = new Date(dueDate.getTimeInMillis());
-      User user = new User(request.getParameter("email"), request.getParameter("firstName"), request.getParameter("lastName"),request.getParameter("book"),date);
-    
-      //Gets formatted due date
-      String formattedDate = user.getFormattedDate();
-      //Adds user and date attribute to request
       
-      request.setAttribute("user", user);
-      request.setAttribute("formattedDate",formattedDate);
+      //Creates a user object with the given input
+      User user = new User(request.getParameter("email"), request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("book"), date);
+      
+      //Adds user and date attribute to request
 
+      request.setAttribute("user", user);
+
+      if (!UserDB.emailExists(user.getEmail())) {
+        UserDB.insertUser(user);
+        UserDB.insertBook(user);
+      } else {
+        UserDB.insertBook(user);
+      }
       url = "/success.jsp";
     } else if (action.equals("GetBook")) {
       url = "/checkout.jsp";
+    } else if (action.equals("Check in")) {
+      UserDB.deleteBook(request.getParameter("email"), request.getParameter("bookName"));
+      ArrayList<User> allUsers = new ArrayList<User>();
+      allUsers = UserDB.selectUsers();
+      request.setAttribute("users", allUsers);
+      url = "/manage.jsp";
     } else if (action.equals("ManageBooks")) {
+      ArrayList<User> allUsers = new ArrayList<User>();
+      allUsers = UserDB.selectUsers();
+      request.setAttribute("users", allUsers);
       url = "/manage.jsp";
     } else if (action.equals("Home")) {
       url = "/library.jsp";

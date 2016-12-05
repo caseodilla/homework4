@@ -10,6 +10,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+/**
+ * Copyright (C) 2016 - JZ Greenwell, Casey Hayes Elon University
+ */
 public class ConnectionPool {
   
   private static ConnectionPool pool = null;

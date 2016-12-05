@@ -77,7 +77,16 @@ input{
   margin-bottom: .5em;
   min-width: 8.5em;
   width: 16em;
+}
 
+td,th{
+  min-width: 5em;
+  padding-right:1em;
+  text-align: left;
+}
+
+tr{
+  line-height: 2em;
 }
 
 #book{

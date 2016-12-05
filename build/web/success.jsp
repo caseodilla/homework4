@@ -7,7 +7,7 @@
   <p>
     Thank you for your patronage of the Belk Library. You've successfully 
     checked out the book, ${user.bookName}. Please note that this book
-    is due back on ${formattedDate}. A friendly email reminder will be 
+    is due back on ${user.formattedDate}. A friendly email reminder will be 
     sent to you if your book becomes overdue.
   </p>
   
